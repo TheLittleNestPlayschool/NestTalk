@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NestTalk | The Little Nest</title>
+<style>
+:root{font-family:Arial,Helvetica,sans-serif;color:#243244;background:#f5f7fb}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh}
+button,input{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+.login-screen{min-height:100vh;display:grid;place-items:center;padding:24px}
+.login-card{width:min(420px,100%);background:#fff;border:1px solid #e3e8ef;border-radius:18px;padding:36px;box-shadow:0 12px 44px rgba(28,48,71,.07)}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{width:44px;height:44px;display:grid;place-items:center;border-radius:14px;background:#e6f2ef;color:#246956;font-weight:800;letter-spacing:-1px}
+.brand-name{font-weight:700;font-size:20px}
+.eyebrow{color:#6d7b8d;font-size:12px;margin-top:4px}
+h1{font-size:26px;letter-spacing:-.6px;margin:30px 0 8px}
+.subtitle{color:#68788b;font-size:14px;line-height:1.5;margin:0 0 28px}
+label{display:block;font-weight:600;font-size:13px;margin:18px 0 8px}
+input{width:100%;padding:13px 14px;border:1px solid #ccd5df;border-radius:9px;outline:none;background:#fff}
+input:focus{border-color:#277968;box-shadow:0 0 0 3px #27796820}
+.primary{width:100%;border:0;border-radius:9px;padding:13px 16px;background:#276d60;color:#fff;font-weight:700;margin-top:24px}
+.primary:disabled{opacity:.65;cursor:wait}
+.error{min-height:20px;color:#b42318;font-size:13px;margin:13px 0 0}
+.app-screen{min-height:100vh}
+.topbar{height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;background:#fff;border-bottom:1px solid #e2e7ed}
+.topbar-right{display:flex;align-items:center;gap:16px}
+.user-name{color:#64748b;font-size:13px}
+.logout{border:1px solid #d5dce6;border-radius:8px;background:#fff;padding:9px 14px;color:#344054}
+.workspace{max-width:900px;margin:72px auto;padding:0 24px}
+.workspace-card{background:#fff;border:1px solid #e3e8ef;border-radius:16px;padding:36px}
+.workspace-card h1{margin:0 0 12px}
+.workspace-card p{color:#69798a;line-height:1.55}
+</style>
+</head>
+<body>
+<main id="loginScreen" class="login-screen">
+<section class="login-card">
+<div class="brand"><div class="brand-mark">NT</div><div><div class="brand-name">NestTalk</div><div class="eyebrow">The Little Nest Playschool</div></div></div>
+<h1>Welcome back</h1>
+<p class="subtitle">Sign in with your Head Office account.</p>
+<form id="loginForm">
+<label for="email">Email</label>
+<input id="email" type="email" autocomplete="username" required>
+<label for="password">Password</label>
+<input id="password" type="password" autocomplete="current-password" required>
+<button id="loginButton" class="primary" type="submit">Sign in</button>
+<p id="loginError" class="error" role="alert" aria-live="polite"></p>
+</form>
+</section>
+</main>
+<div id="appScreen" class="app-screen hidden">
+<header class="topbar">
+<div class="brand"><div class="brand-mark">NT</div><div class="brand-name">NestTalk</div></div>
+<div class="topbar-right"><span id="userName" class="user-name"></span><button id="logoutButton" class="logout" type="button">Sign out</button></div>
+</header>
+<main class="workspace">
+<div class="workspace-card"><h1>Head Office Communications</h1><p>You're signed in to NestTalk. The conversation inbox will be added here next.</p></div>
+</main>
+</div>
+<script>
+const LOGIN_ENDPOINT='https://x58r-xped-p4y6.n7e.xano.io/api:0Ddhs4dT/ad_journey_login';
+const TOKEN_KEY='nesttalk_token';
+const USER_KEY='nesttalk_user';
+const loginScreen=document.getElementById('loginScreen');
+const appScreen=document.getElementById('appScreen');
+const loginForm=document.getElementById('loginForm');
+const loginButton=document.getElementById('loginButton');
+const loginError=document.getElementById('loginError');
+function showApp(){
+  loginScreen.classList.add('hidden');
+  appScreen.classList.remove('hidden');
+  let user={};
+  try{user=JSON.parse(localStorage.getItem(USER_KEY)||'{}')}catch(_){}
+  document.getElementById('userName').textContent=user.name||user.full_name||user.email||'Head Office';
+}
+function showLogin(){
+  appScreen.classList.add('hidden');
+  loginScreen.classList.remove('hidden');
+}
+if(localStorage.getItem(TOKEN_KEY))showApp();
+loginForm.addEventListener('submit',async event=>{
+  event.preventDefault();
+  loginError.textContent='';
+  loginButton.disabled=true;
+  loginButton.textContent='Signing in…';
+  try{
+    const response=await fetch(LOGIN_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:document.getElementById('email').value.trim(),password:document.getElementById('password').value})});
+    const data=await response.json().catch(()=>({}));
+    if(!response.ok)throw new Error(data.message||'Incorrect email or password.');
+    const token=data.authToken||data.auth_token||data.token;
+    if(!token)throw new Error('The login response did not include an authentication token.');
+    localStorage.setItem(TOKEN_KEY,token);
+    localStorage.setItem(USER_KEY,JSON.stringify(data.user||{}));
+    document.getElementById('password').value='';
+    showApp();
+  }catch(error){loginError.textContent=error.message||'Unable to sign in.'}
+  finally{loginButton.disabled=false;loginButton.textContent='Sign in'}
+});
+document.getElementById('logoutButton').addEventListener('click',()=>{
+  localStorage.removeItem(TOKEN_KEY);
+  localStorage.removeItem(USER_KEY);
+  showLogin();
+});
+</script>
+</body>
+</html>
