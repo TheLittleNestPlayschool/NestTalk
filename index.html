@@ -2,63 +2,52 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NestTalk | The Little Nest</title>
 <style>
-:root{font-family:Arial,Helvetica,sans-serif;color:#243244;background:#f5f7fb}
-*{box-sizing:border-box}
-body{margin:0;min-height:100vh}
-button,input{font:inherit}
-button{cursor:pointer}
-.hidden{display:none!important}
-.login-screen{min-height:100vh;display:grid;place-items:center;padding:24px}
-.login-card{width:min(420px,100%);background:#fff;border:1px solid #e3e8ef;border-radius:18px;padding:36px;box-shadow:0 12px 44px rgba(28,48,71,.07)}
-.brand{display:flex;align-items:center;gap:12px}
-.brand-mark{width:44px;height:44px;display:grid;place-items:center;border-radius:14px;background:#e6f2ef;color:#246956;font-weight:800;letter-spacing:-1px}
-.brand-name{font-weight:700;font-size:20px}
-.eyebrow{color:#6d7b8d;font-size:12px;margin-top:4px}
-h1{font-size:26px;letter-spacing:-.6px;margin:30px 0 8px}
-.subtitle{color:#68788b;font-size:14px;line-height:1.5;margin:0 0 28px}
-label{display:block;font-weight:600;font-size:13px;margin:18px 0 8px}
-input{width:100%;padding:13px 14px;border:1px solid #ccd5df;border-radius:9px;outline:none;background:#fff}
-input:focus{border-color:#277968;box-shadow:0 0 0 3px #27796820}
-.primary{width:100%;border:0;border-radius:9px;padding:13px 16px;background:#276d60;color:#fff;font-weight:700;margin-top:24px}
-.primary:disabled{opacity:.65;cursor:wait}
-.error{min-height:20px;color:#b42318;font-size:13px;margin:13px 0 0}
-.app-screen{min-height:100vh}
-.topbar{height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;background:#fff;border-bottom:1px solid #e2e7ed}
-.topbar-right{display:flex;align-items:center;gap:16px}
-.user-name{color:#64748b;font-size:13px}
-.logout{border:1px solid #d5dce6;border-radius:8px;background:#fff;padding:9px 14px;color:#344054}
-.workspace{max-width:900px;margin:72px auto;padding:0 24px}
-.workspace-card{background:#fff;border:1px solid #e3e8ef;border-radius:16px;padding:36px}
-.workspace-card h1{margin:0 0 12px}
-.workspace-card p{color:#69798a;line-height:1.55}
+:root{--bg:#f4efe7;--card:#fffdf9;--text:#292824;--muted:#746f67;--line:#ded6ca;--green:#6d8572;--green-dark:#556a5a;--soft:#eef2ed;--button-bg:#e7f3fa;--button-border:#9fc5d9;--button-hover:#d7ebf5;--button-text:#1f2830;--shadow:0 12px 32px rgba(63,54,42,.08)}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}body{min-height:100vh}button,input{font:inherit}button{cursor:pointer}.hidden{display:none!important}
+.login-shell{min-height:100vh;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at top left,rgba(255,255,255,.95),rgba(244,240,232,.82) 42%,rgba(230,221,207,.92))}
+.login-card{width:min(100%,430px);padding:42px 38px 36px;background:rgba(255,255,255,.84);border:1px solid rgba(90,77,58,.12);border-radius:28px;box-shadow:0 24px 60px rgba(73,61,44,.14);backdrop-filter:blur(14px)}
+.brand-mark{width:58px;height:58px;display:grid;place-items:center;border-radius:18px;background:#5f7664;color:#fff;font-weight:800;letter-spacing:.08em;margin-bottom:20px}.eyebrow{margin:0 0 7px;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#788071}
+.login-card h1{margin:0;font-size:2.2rem;line-height:1.05;font-weight:750}.subtext{margin:12px 0 28px;color:#6f6a62;line-height:1.55}
+#loginForm{display:grid;gap:10px}#loginForm label{font-size:.88rem;font-weight:700;margin-top:6px}#loginForm input{width:100%;height:50px;border:1px solid #d8d0c3;border-radius:14px;padding:0 15px;background:#fff;color:#2f2c28;outline:none;transition:border-color .2s,box-shadow .2s}#loginForm input:focus{border-color:#6f8773;box-shadow:0 0 0 4px rgba(111,135,115,.12)}.password-wrap{position:relative}.password-wrap input{padding-right:74px!important}.password-toggle{position:absolute;right:8px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:#5f7664;font-weight:700;padding:8px}.login-button{height:52px;border:1px solid var(--button-border);border-radius:15px;background:var(--button-bg);color:var(--button-text);font-weight:800;cursor:pointer;margin-top:12px;transition:transform .15s,opacity .2s,background .15s}.login-button:hover{background:var(--button-hover);transform:translateY(-1px)}.login-button:disabled{opacity:.58;cursor:wait;transform:none}.login-message{min-height:20px;margin:2px 0 0;font-size:.88rem;color:#b3473f}
+.app-screen{min-height:100vh;display:flex;flex-direction:column}.topbar{height:58px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:8px 16px;border-bottom:1px solid rgba(90,78,62,.12);background:rgba(255,253,249,.94);backdrop-filter:blur(10px)}.brand-block h1{font-size:18px;margin:2px 0 0}.topbar .eyebrow{font-size:9px;color:var(--green-dark);margin:0}.user-actions{display:flex;align-items:center;gap:12px}.user-name{font-size:11px;color:var(--muted)}.secondary-button{height:34px;border:1px solid var(--button-border);background:var(--button-bg);color:var(--button-text);border-radius:9px;padding:8px 12px;font-weight:700;font-size:11px;line-height:1}.secondary-button:hover{background:var(--button-hover)}
+.page-shell{padding:12px;flex:1;min-height:0}.workspace-card{min-height:calc(100vh - 82px);background:var(--card);border:1px solid rgba(90,78,62,.12);border-radius:14px;box-shadow:var(--shadow);padding:24px}.section-kicker{margin:0 0 5px;text-transform:uppercase;letter-spacing:.12em;font-size:9px;font-weight:700;color:var(--green-dark)}.workspace-card h2{font-size:19px;margin:0 0 10px}.workspace-card p{font-size:13px;color:var(--muted);line-height:1.5;margin:0}
+@media(max-width:520px){.login-shell{padding:16px}.login-card{padding:34px 24px 30px;border-radius:22px}.login-card h1{font-size:1.9rem}.topbar{padding:8px 12px}.user-name{display:none}}
 </style>
 </head>
 <body>
-<main id="loginScreen" class="login-screen">
-<section class="login-card">
-<div class="brand"><div class="brand-mark">NT</div><div><div class="brand-name">NestTalk</div><div class="eyebrow">The Little Nest Playschool</div></div></div>
-<h1>Welcome back</h1>
-<p class="subtitle">Sign in with your Head Office account.</p>
+<main id="loginScreen" class="login-shell">
+<section class="login-card" aria-labelledby="loginTitle">
+<div class="brand-mark">TLN</div>
+<p class="eyebrow">The Little Nest Playschool</p>
+<h1 id="loginTitle">NestTalk</h1>
+<p class="subtext">Sign in to Head Office communications.</p>
 <form id="loginForm">
 <label for="email">Email</label>
-<input id="email" type="email" autocomplete="username" required>
+<input id="email" name="email" type="email" autocomplete="username" required>
 <label for="password">Password</label>
-<input id="password" type="password" autocomplete="current-password" required>
-<button id="loginButton" class="primary" type="submit">Sign in</button>
-<p id="loginError" class="error" role="alert" aria-live="polite"></p>
+<div class="password-wrap">
+<input id="password" name="password" type="password" autocomplete="current-password" required>
+<button id="togglePassword" class="password-toggle" type="button" aria-label="Show password">Show</button>
+</div>
+<button id="loginButton" class="login-button" type="submit">Sign In</button>
+<p id="loginError" class="login-message" role="alert" aria-live="polite"></p>
 </form>
 </section>
 </main>
 <div id="appScreen" class="app-screen hidden">
 <header class="topbar">
-<div class="brand"><div class="brand-mark">NT</div><div class="brand-name">NestTalk</div></div>
-<div class="topbar-right"><span id="userName" class="user-name"></span><button id="logoutButton" class="logout" type="button">Sign out</button></div>
+<div class="brand-block"><p class="eyebrow">The Little Nest Playschool</p><h1>NestTalk</h1></div>
+<div class="user-actions"><span id="userName" class="user-name"></span><button id="logoutButton" class="secondary-button" type="button">Log out</button></div>
 </header>
-<main class="workspace">
-<div class="workspace-card"><h1>Head Office Communications</h1><p>You're signed in to NestTalk. The conversation inbox will be added here next.</p></div>
+<main class="page-shell">
+<section class="workspace-card">
+<p class="section-kicker">Communications</p>
+<h2>Head Office Inbox</h2>
+<p>You're signed in to NestTalk. The conversation inbox will be added here next.</p>
+</section>
 </main>
 </div>
 <script>
@@ -70,6 +59,8 @@ const appScreen=document.getElementById('appScreen');
 const loginForm=document.getElementById('loginForm');
 const loginButton=document.getElementById('loginButton');
 const loginError=document.getElementById('loginError');
+const passwordInput=document.getElementById('password');
+const togglePassword=document.getElementById('togglePassword');
 function showApp(){
   loginScreen.classList.add('hidden');
   appScreen.classList.remove('hidden');
@@ -82,23 +73,29 @@ function showLogin(){
   loginScreen.classList.remove('hidden');
 }
 if(localStorage.getItem(TOKEN_KEY))showApp();
+togglePassword.addEventListener('click',()=>{
+  const show=passwordInput.type==='password';
+  passwordInput.type=show?'text':'password';
+  togglePassword.textContent=show?'Hide':'Show';
+  togglePassword.setAttribute('aria-label',show?'Hide password':'Show password');
+});
 loginForm.addEventListener('submit',async event=>{
   event.preventDefault();
   loginError.textContent='';
   loginButton.disabled=true;
   loginButton.textContent='Signing in…';
   try{
-    const response=await fetch(LOGIN_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:document.getElementById('email').value.trim(),password:document.getElementById('password').value})});
+    const response=await fetch(LOGIN_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:document.getElementById('email').value.trim(),password:passwordInput.value})});
     const data=await response.json().catch(()=>({}));
     if(!response.ok)throw new Error(data.message||'Incorrect email or password.');
     const token=data.authToken||data.auth_token||data.token;
     if(!token)throw new Error('The login response did not include an authentication token.');
     localStorage.setItem(TOKEN_KEY,token);
     localStorage.setItem(USER_KEY,JSON.stringify(data.user||{}));
-    document.getElementById('password').value='';
+    passwordInput.value='';
     showApp();
   }catch(error){loginError.textContent=error.message||'Unable to sign in.'}
-  finally{loginButton.disabled=false;loginButton.textContent='Sign in'}
+  finally{loginButton.disabled=false;loginButton.textContent='Sign In'}
 });
 document.getElementById('logoutButton').addEventListener('click',()=>{
   localStorage.removeItem(TOKEN_KEY);
