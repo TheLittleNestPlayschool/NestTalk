@@ -129,7 +129,6 @@ function showLogin(){
   appScreen.classList.add('hidden');
   loginScreen.classList.remove('hidden');
 }
-if(localStorage.getItem(TOKEN_KEY))showApp();
 togglePassword.addEventListener('click',()=>{
   const show=passwordInput.type==='password';
   passwordInput.type=show?'text':'password';
@@ -277,6 +276,7 @@ async function selectConversation(row){
 document.getElementById('refreshInbox').addEventListener('click',()=>{loadConversations();if(currentConversationId){const row=conversationRows.find(r=>Number(r.id)===Number(currentConversationId));if(row)selectConversation(row)}});
 tabAll.addEventListener('click',()=>setTab('all'));
 tabInbox.addEventListener('click',()=>setTab('inbox'));
+if(localStorage.getItem(TOKEN_KEY))showApp();
 
 </script>
 </body>
