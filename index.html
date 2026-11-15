@@ -52,6 +52,53 @@
 .thread-footer{border-top:1px solid var(--line);padding:16px 22px;color:var(--muted);font-size:11px;background:#faf8f4}
 @media(max-width:760px){.talk-shell{grid-template-columns:240px minmax(0,1fr)}.thread-header{padding:14px}.messages-list{padding:14px}.talk-sidebar-head{padding:14px 10px}}
 
+
+/* NestTalk three-column desktop workspace */
+.talk-shell{height:calc(100vh - 82px);min-height:420px;padding:0;display:grid;grid-template-columns:190px 350px minmax(0,1fr);overflow:hidden}
+.talk-rail{display:flex;flex-direction:column;min-height:0;gap:4px;padding:22px 11px 16px;background:#f1eee8;border-right:1px solid var(--line)}
+.rail-heading{font-size:9px;font-weight:800;color:var(--green-dark);letter-spacing:.14em;margin:2px 10px 12px}
+.rail-group{margin-top:22px}.rail-spacer{flex:1}
+.rail-link{width:100%;display:flex;align-items:center;justify-content:space-between;text-align:left;border:1px solid transparent;background:transparent;border-radius:9px;padding:11px 10px;color:#514f49;font-size:12px;font-weight:700;line-height:1.25}
+.rail-link:hover{background:#e5e8df}.rail-link.active{background:#dfe9de;color:#405947;border-color:#c8d9c7}
+.rail-link-left{display:flex;align-items:center;gap:10px}.rail-icon{font-size:17px;width:18px;text-align:center;font-weight:400;color:#698272}
+.rail-parent{border-top:1px solid var(--line);border-radius:0;padding-top:15px;font-size:11px;color:#706e65}
+.talk-sidebar{display:flex;flex-direction:column;min-height:0;border-right:1px solid var(--line);background:#fbf9f5}
+.talk-sidebar-head{flex-shrink:0;padding:19px 16px 15px;border-bottom:1px solid var(--line);background:var(--card)}
+.talk-title-row{display:flex;justify-content:space-between;align-items:center;gap:8px}.talk-title-row h2{font-size:17px;margin:0}
+.talk-search-wrap{margin-top:15px}.talk-search-wrap input{height:38px;width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:9px;background:#fff;font-size:12px;outline:none}
+.talk-search-wrap input:focus{border-color:#6f8773;box-shadow:0 0 0 3px rgba(111,135,115,.12)}
+.talk-status{flex-shrink:0;padding:11px 16px 5px;min-height:32px;font-size:11px;color:var(--muted)}.talk-status.error,.messages-status.error{color:#aa433a}
+.conversation-list{flex:1;min-height:0;overflow-y:auto;padding:6px 9px 10px}
+.conversation-item{display:block;text-align:left;width:100%;background:transparent;border:1px solid transparent;border-radius:10px;padding:13px 11px;color:var(--text);margin:2px 0}
+.conversation-item:hover{background:#f0eee9}.conversation-item.active{background:#e7eee5;border-color:#cbdcc9}
+.conversation-top{display:flex;align-items:flex-start;justify-content:space-between;gap:6px}.conversation-top strong{font-size:13px;font-weight:750;line-height:1.4;overflow-wrap:anywhere}
+.conversation-time{font-size:10px;color:var(--muted);white-space:nowrap}.conversation-meta{display:block;font-size:11px;color:var(--muted);margin-top:7px}
+.conversation-type{display:inline-block;margin-top:7px;border-radius:6px;background:#efece6;color:#66635d;font-size:10px;padding:3px 6px;text-transform:capitalize}
+.talk-list-footer{flex-shrink:0;text-align:center;border-top:1px solid var(--line);background:var(--card);padding:9px 12px}
+.talk-list-footer:has(> :not([hidden])){min-height:46px}.talk-list-footer:has(> [hidden]:nth-child(1)):has(> [hidden]:nth-child(2)){display:none}
+#loadMoreConversations{border:1px solid var(--button-border);background:var(--button-bg);border-radius:8px;font-size:11px;padding:7px 12px;font-weight:700;color:var(--button-text)}
+#roleFilterNote{font-size:10px;color:var(--muted);line-height:1.4}
+.talk-main{display:flex;flex-direction:column;min-width:0;min-height:0;background:var(--card)}
+.thread-header{min-height:81px;padding:17px 24px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px}
+.thread-header h2{font-size:18px;margin:2px 0 4px}.thread-subtitle{font-size:11px;color:var(--muted);margin:0}
+.thread-access{background:#eef0ed;border-radius:7px;padding:5px 8px;color:#617061;font-size:10px;white-space:nowrap}
+.messages-status{padding:10px 24px 0;min-height:25px;font-size:11px;color:var(--muted)}
+.messages-list{flex:1;min-height:0;overflow-y:auto;padding:16px 25px 25px;display:flex;flex-direction:column;gap:16px}
+.thread-placeholder{margin:auto;max-width:350px;text-align:center;font-size:13px;color:var(--muted);line-height:1.6}
+.message-row{display:flex;flex-direction:column;gap:5px;align-self:flex-start;max-width:min(72%,670px)}.message-row.sent{align-self:flex-end}
+.message-sender{font-size:11px;color:var(--muted)}.message-bubble{background:#f1eee8;border:1px solid #e3dcd1;padding:12px 14px;border-radius:13px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;line-height:1.55}
+.message-row.sent .message-bubble{background:#e6eee4;border-color:#cfdfcc}.message-time{font-size:10px;color:var(--muted)}.message-row.sent .message-time{text-align:right}
+.reply-form{flex-shrink:0;border-top:1px solid var(--line);background:#faf8f4;padding:14px 24px 16px;display:flex;flex-direction:column;gap:10px}
+.reply-form textarea{width:100%;resize:vertical;max-height:175px;min-height:75px;border:1px solid #d9d2c6;border-radius:11px;background:#fff;padding:12px 13px;outline:none;color:var(--text);font-size:13px}
+.reply-form textarea:focus{border-color:#6f8773;box-shadow:0 0 0 3px rgba(111,135,115,.12)}.reply-form textarea:disabled{background:#f5f1eb}
+.reply-actions{display:flex;align-items:center;justify-content:space-between;gap:12px}.reply-actions span{font-size:11px;color:var(--muted)}.reply-actions button:disabled{opacity:.5;cursor:not-allowed}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.parent-overlay{position:fixed;inset:0;z-index:100;background:rgba(39,35,27,.4);display:grid;place-items:center;padding:20px}.parent-overlay[hidden]{display:none}
+.parent-panel{background:var(--card);width:min(740px,100%);border:1px solid var(--line);border-radius:15px;padding:25px;box-shadow:0 28px 70px rgba(39,35,27,.2)}
+.parent-panel-heading{display:flex;align-items:center;justify-content:space-between;gap:10px}.parent-panel h2{font-size:20px;margin:0}.parent-panel p{font-size:13px;line-height:1.6;color:var(--muted);margin:20px 0}
+@media(max-width:1100px){.talk-shell{grid-template-columns:160px 305px minmax(0,1fr)}.talk-rail{padding-left:8px;padding-right:8px}.rail-link{font-size:11px}.thread-header{padding:15px}.messages-list{padding:15px}.reply-form{padding:14px}}
+@media(max-width:760px){.talk-shell{grid-template-columns:140px 245px minmax(0,1fr)}.talk-rail{padding-left:5px;padding-right:5px}.talk-sidebar-head{padding:13px 9px}.rail-link{font-size:10px;padding:10px 6px}.rail-icon{display:none}.conversation-item{padding:10px 7px}.message-row{max-width:92%}}
+
 </style>
 </head>
 <body>
@@ -80,29 +127,48 @@
 <div class="user-actions"><span id="userName" class="user-name"></span><button id="logoutButton" class="secondary-button" type="button">Log out</button></div>
 </header>
 <main class="page-shell">
-<section class="workspace-card talk-shell" aria-label="NestTalk messaging">
-<aside class="talk-sidebar">
+<section class="workspace-card talk-shell" aria-label="NestTalk communications">
+<nav class="talk-rail" aria-label="NestTalk navigation">
+<div class="rail-heading">MESSAGES</div>
+<button class="rail-link active" data-view="inbox" type="button"><span class="rail-link-left"><span class="rail-icon">▣</span>Head Office</span></button>
+<button class="rail-link" data-view="all" type="button"><span class="rail-link-left"><span class="rail-icon">☷</span>All Conversations</span></button>
+<div class="rail-heading rail-group">CONTACTS</div>
+<button class="rail-link" data-view="owners" type="button"><span class="rail-link-left"><span class="rail-icon">⌂</span>Owners</span></button>
+<button class="rail-link" data-view="teachers" type="button"><span class="rail-link-left"><span class="rail-icon">♙</span>Teachers</span></button>
+<div class="rail-spacer"></div>
+<button id="openParentArchive" class="rail-link rail-parent" type="button"><span class="rail-link-left"><span class="rail-icon">◫</span>Parent Conversations</span></button>
+</nav>
+<aside class="talk-sidebar" aria-label="Conversation list">
 <div class="talk-sidebar-head">
-<p class="section-kicker">Communications</p>
-<div class="talk-title-row"><h2>Conversations</h2><button id="refreshInbox" class="secondary-button" type="button">Refresh</button></div>
-<div class="talk-tabs" role="group" aria-label="Conversation views">
-<button id="tabAll" class="talk-tab active" type="button" aria-pressed="true">All conversations</button>
-<button id="tabInbox" class="talk-tab" type="button" aria-pressed="false">Head Office inbox</button>
-</div>
+<p class="section-kicker">Working Conversations</p>
+<div class="talk-title-row"><h2 id="viewHeading">Head Office</h2><button id="refreshInbox" class="secondary-button" type="button">Refresh</button></div>
+<div class="talk-search-wrap"><input id="conversationSearch" type="search" placeholder="Search conversation or branch..." aria-label="Search conversations"></div>
 </div>
 <div id="inboxStatus" class="talk-status" role="status" aria-live="polite">Loading conversations…</div>
-<div id="conversationList" class="conversation-list" aria-label="Conversations"></div>
+<div id="conversationList" class="conversation-list"></div>
+<div class="talk-list-footer"><button id="loadMoreConversations" type="button" hidden>Show more conversations</button><span id="roleFilterNote" hidden>Contact filters currently use who started the conversation.</span></div>
 </aside>
-<section class="talk-main" aria-label="Conversation messages">
+<section class="talk-main" aria-label="Message thread">
 <header class="thread-header">
-<h2 id="threadTitle">Select a conversation</h2>
-<p id="threadSubtitle" class="thread-subtitle">Choose a conversation to see its messages.</p>
+<div><p class="section-kicker">Conversation</p><h2 id="threadTitle">Select a conversation</h2><p id="threadSubtitle" class="thread-subtitle">Choose a conversation from the list.</p></div>
+<span id="threadAccess" class="thread-access" hidden></span>
 </header>
 <div id="messagesStatus" class="messages-status" role="status" aria-live="polite"></div>
-<div id="messagesList" class="messages-list"><p class="thread-placeholder">Your conversation history will appear here.</p></div>
-<footer class="thread-footer">Message history is connected to Xano. Sending replies is the next step.</footer>
+<div id="messagesList" class="messages-list"><p class="thread-placeholder">Choose an owner or teacher conversation to view its messages.</p></div>
+<form id="replyForm" class="reply-form">
+<label for="replyText" class="sr-only">Write a message</label>
+<textarea id="replyText" rows="3" placeholder="Select a conversation to write a reply..." disabled></textarea>
+<div class="reply-actions"><span id="replyHint">Choose a conversation first.</span><button id="sendMessage" class="secondary-button" type="submit" disabled>Send message</button></div>
+</form>
 </section>
 </section>
+<div id="parentArchiveOverlay" class="parent-overlay" hidden>
+<section class="parent-panel" role="dialog" aria-modal="true" aria-labelledby="parentPanelTitle">
+<div class="parent-panel-heading"><h2 id="parentPanelTitle">Parent Conversations</h2><button id="closeParentArchive" class="secondary-button" type="button">Close</button></div>
+<p>Parent conversation search and review will live in this separate area. For now, network conversations remain accessible through All Conversations.</p>
+<button id="viewAllFromParents" class="secondary-button" type="button">View All Conversations</button>
+</section>
+</div>
 </main>
 </div>
 <script>
@@ -159,74 +225,95 @@ document.getElementById('logoutButton').addEventListener('click',()=>{
   showLogin();
 });
 
-/* Xano-powered Head Office conversation inbox */
+
+/* Xano-powered Head Office conversation workspace */
 const inboxStatus=document.getElementById('inboxStatus');
 const conversationList=document.getElementById('conversationList');
 const messagesList=document.getElementById('messagesList');
 const messagesStatus=document.getElementById('messagesStatus');
-const tabAll=document.getElementById('tabAll');
-const tabInbox=document.getElementById('tabInbox');
-let conversationScope='all';
+const replyForm=document.getElementById('replyForm');
+const replyText=document.getElementById('replyText');
+const replyHint=document.getElementById('replyHint');
+const sendMessage=document.getElementById('sendMessage');
+const conversationSearch=document.getElementById('conversationSearch');
+const loadMoreButton=document.getElementById('loadMoreConversations');
+const navButtons=Array.from(document.querySelectorAll('.rail-link[data-view]'));
+const parentOverlay=document.getElementById('parentArchiveOverlay');
+let conversationScope='inbox';
 let currentConversationId=null;
 let conversationRows=[];
+let listLimit=30;
 let inboxRequestId=0;
 let messageRequestId=0;
+let canReply=false;
+let sending=false;
+const viewTitles={inbox:'Head Office',all:'All Conversations',owners:'Owners',teachers:'Teachers'};
 function apiList(payload,keys){
   if(Array.isArray(payload))return payload;
   if(!payload||typeof payload!=='object')return [];
-  for(const key of keys){if(Array.isArray(payload[key]))return payload[key]}
+  for(const key of keys)if(Array.isArray(payload[key]))return payload[key];
   if(payload.data&&typeof payload.data==='object')return apiList(payload.data,keys);
   if(payload.result&&typeof payload.result==='object')return apiList(payload.result,keys);
   return [];
 }
-async function commGet(path,params={}){
+async function commRequest(path,params,method='GET'){
   const token=localStorage.getItem(TOKEN_KEY);
   if(!token)throw new Error('Please sign in again.');
   const url=new URL(API_BASE+'/'+path);
-  for(const [key,value] of Object.entries(params))url.searchParams.set(key,String(value));
-  const response=await fetch(url.toString(),{headers:{Authorization:'Bearer '+token,Accept:'application/json'},cache:'no-store'});
-  const body=await response.json().catch(()=>({}));
+  const headers={Authorization:'Bearer '+token,Accept:'application/json'};
+  let body;
+  if(method==='GET')for(const [key,value] of Object.entries(params||{}))url.searchParams.set(key,String(value));
+  else{headers['Content-Type']='application/json';body=JSON.stringify(params||{})}
+  const response=await fetch(url.toString(),{method,headers,body,cache:'no-store'});
+  const data=await response.json().catch(()=>({}));
   if(response.status===401){localStorage.removeItem(TOKEN_KEY);localStorage.removeItem(USER_KEY);showLogin();throw new Error('Your session expired. Please sign in again.')}
-  if(!response.ok)throw new Error(body.message||'Unable to load data ('+response.status+').');
-  return body;
-}
-function formatTime(stamp){
-  const value=Number(stamp);
-  if(!Number.isFinite(value)||value<=0)return '';
-  return new Intl.DateTimeFormat('en-PH',{timeZone:'Asia/Manila',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}).format(new Date(value));
+  if(!response.ok)throw new Error(data.message||'Unable to load data ('+response.status+').');
+  return data;
 }
 function makeText(tag,className,value){
-  const el=document.createElement(tag);
-  if(className)el.className=className;
-  el.textContent=value==null?'':String(value);
-  return el;
+  const element=document.createElement(tag);
+  if(className)element.className=className;
+  element.textContent=value==null?'':String(value);
+  return element;
 }
-function conversationName(row){
-  return String(row.subject||row.title||'Conversation #'+row.id);
+function formatTime(stamp){
+  const n=Number(stamp);
+  if(!Number.isFinite(n)||n<=0)return '';
+  return new Intl.DateTimeFormat('en-PH',{timeZone:'Asia/Manila',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}).format(new Date(n));
 }
-function setTab(scope){
-  conversationScope=scope;
-  tabAll.classList.toggle('active',scope==='all');
-  tabInbox.classList.toggle('active',scope==='inbox');
-  tabAll.setAttribute('aria-pressed',String(scope==='all'));
-  tabInbox.setAttribute('aria-pressed',String(scope==='inbox'));
-  currentConversationId=null;
-  document.getElementById('threadTitle').textContent='Select a conversation';
-  document.getElementById('threadSubtitle').textContent='Choose a conversation to see its messages.';
-  messagesStatus.textContent='';
-  messagesList.replaceChildren(makeText('p','thread-placeholder','Your conversation history will appear here.'));
-  loadConversations();
+function conversationName(row){return String(row.subject||row.title||'Conversation #'+row.id)}
+function roleFromCreator(row){return String(row.created_by_type||'').toLowerCase()}
+function matchesScope(row){
+  if(conversationScope==='owners')return roleFromCreator(row)==='owner';
+  if(conversationScope==='teachers')return roleFromCreator(row)==='teacher';
+  return true;
+}
+function matchingConversations(){
+  const term=conversationSearch.value.trim().toLowerCase();
+  return conversationRows.filter(row=>{
+    if(!matchesScope(row))return false;
+    if(!term)return true;
+    const search=[conversationName(row),row.id,row.franchise_id,row.created_by_type,row.conversation_type].join(' ').toLowerCase();
+    return search.includes(term);
+  });
 }
 function renderConversations(){
   conversationList.replaceChildren();
-  if(!conversationRows.length){conversationList.append(makeText('p','talk-status','No conversations found.'));return}
-  for(const row of conversationRows){
+  const rows=matchingConversations();
+  const visible=rows.slice(0,listLimit);
+  const note=document.getElementById('roleFilterNote');
+  note.hidden=!(conversationScope==='owners'||conversationScope==='teachers');
+  loadMoreButton.hidden=rows.length<=listLimit;
+  inboxStatus.textContent=rows.length+' conversation'+(rows.length===1?'':'s');
+  if(!visible.length){conversationList.append(makeText('p','talk-status',conversationScope==='owners'||conversationScope==='teachers'?'No matching conversations started by this contact type.':'No conversations found.'));return}
+  for(const row of visible){
     const button=document.createElement('button');
-    button.type='button';button.className='conversation-item'+(Number(row.id)===Number(currentConversationId)?' active':'');
+    button.type='button';
+    button.className='conversation-item'+(String(row.id)===String(currentConversationId)?' active':'');
     const top=makeText('div','conversation-top','');
     top.append(makeText('strong','',conversationName(row)),makeText('span','conversation-time',formatTime(row.last_message_at||row.updated_at)));
-    button.append(top);
-    button.append(makeText('span','conversation-meta','Franchise #'+(row.franchise_id??'—')+' · '+(row.conversation_type||'conversation')));
+    button.append(top,makeText('span','conversation-meta','Franchise #'+(row.franchise_id??'—')+' · Conversation #'+row.id));
+    button.append(makeText('span','conversation-type',roleFromCreator(row)||row.conversation_type||'Conversation'));
     button.addEventListener('click',()=>selectConversation(row));
     conversationList.append(button);
   }
@@ -237,47 +324,128 @@ async function loadConversations(){
   inboxStatus.textContent='Loading conversations…';
   try{
     const endpoint=conversationScope==='all'?'comm_admin_all_conversation_list':'comm_admin_inbox';
-    const response=await commGet(endpoint);
+    const response=await commRequest(endpoint);
     if(requestId!==inboxRequestId)return;
-    const rows=apiList(response,['conversation_list','conversations','inbox_conversations','all_conversations','results','items']);
-    conversationRows=rows.map(item=>item.conversation||item.comm_conversation||item).filter(item=>item&&item.id!=null);
+    const list=apiList(response,['conversation_list','conversations','inbox_conversations','all_conversations','results','items']);
+    conversationRows=list.map(item=>item.conversation||item.comm_conversation||item).filter(item=>item&&item.id!=null);
     conversationRows.sort((a,b)=>Number(b.last_message_at||b.updated_at||b.created_at||0)-Number(a.last_message_at||a.updated_at||a.created_at||0));
-    inboxStatus.textContent=conversationRows.length+' conversation'+(conversationRows.length===1?'':'s');
     renderConversations();
   }catch(error){if(requestId!==inboxRequestId)return;inboxStatus.classList.add('error');inboxStatus.textContent=error.message;conversationList.replaceChildren()}
+}
+function resetThread(){
+  currentConversationId=null;
+  ++messageRequestId;
+  canReply=false;
+  document.getElementById('threadTitle').textContent='Select a conversation';
+  document.getElementById('threadSubtitle').textContent='Choose a conversation from the list.';
+  document.getElementById('threadAccess').hidden=true;
+  messagesStatus.textContent='';
+  messagesList.replaceChildren(makeText('p','thread-placeholder','Choose an owner or teacher conversation to view its messages.'));
+  replyText.value='';
+  updateComposer();
+}
+function setView(view){
+  conversationScope=view;
+  listLimit=30;
+  conversationSearch.value='';
+  document.getElementById('viewHeading').textContent=viewTitles[view];
+  navButtons.forEach(button=>{const active=button.dataset.view===view;button.classList.toggle('active',active);button.setAttribute('aria-current',active?'page':'false')});
+  resetThread();
+  loadConversations();
+}
+function updateComposer(){
+  const enabled=Boolean(currentConversationId&&canReply&&!sending);
+  replyText.disabled=!enabled;
+  sendMessage.disabled=!enabled||!replyText.value.trim();
+  sendMessage.textContent=sending?'Sending…':'Send message';
+  replyHint.textContent=sending?'Sending your reply…':(!currentConversationId?'Choose a conversation first.':(canReply?'Reply as Head Office.':'Read only — Head Office is not a participant.'));
+  replyText.placeholder=enabled?'Write your message…':'Select a Head Office conversation to reply…';
+}
+function renderMessages(messages){
+  messagesList.replaceChildren();
+  if(!messages.length){messagesList.append(makeText('p','thread-placeholder','No messages in this conversation yet.'));return}
+  for(const msg of messages){
+    const sent=msg.sender_type==='admin';
+    const messageRow=makeText('article','message-row'+(sent?' sent':''),'');
+    const title=sent?'Head Office · Admin #'+msg.sender_id:(String(msg.sender_type||'Participant').replace(/^./,x=>x.toUpperCase())+' #'+msg.sender_id);
+    messageRow.append(makeText('div','message-sender',title));
+    messageRow.append(makeText('div','message-bubble',Number(msg.deleted_at)>0?'[Message deleted]':msg.message_text||''));
+    messageRow.append(makeText('div','message-time',formatTime(msg.created_at)));
+    messagesList.append(messageRow);
+  }
+  messagesList.scrollTop=messagesList.scrollHeight;
 }
 async function selectConversation(row){
   currentConversationId=row.id;
   const requestId=++messageRequestId;
+  canReply=false;
+  replyText.value='';
+  updateComposer();
   renderConversations();
   document.getElementById('threadTitle').textContent=conversationName(row);
   document.getElementById('threadSubtitle').textContent='Franchise #'+(row.franchise_id??'—')+' · Conversation #'+row.id;
+  const access=document.getElementById('threadAccess');
+  access.hidden=true;
   messagesList.replaceChildren();
   messagesStatus.classList.remove('error');
   messagesStatus.textContent='Loading messages…';
-  try{
-    const response=await commGet('comm_admin_all_message_list',{conversation_id:row.id});
-    if(requestId!==messageRequestId)return;
-    const messages=apiList(response,['messages','message_list','conversation_messages','results','items']);
+  const [messageResult,participantResult]=await Promise.allSettled([
+    commRequest('comm_admin_all_message_list',{conversation_id:row.id}),
+    commRequest('comm_admin_participant_list',{conversation_id:row.id})
+  ]);
+  if(requestId!==messageRequestId)return;
+  if(messageResult.status==='fulfilled'){
+    const messages=apiList(messageResult.value,['messages','message_list','conversation_messages','results','items']);
     messages.sort((a,b)=>Number(a.created_at||0)-Number(b.created_at||0));
     messagesStatus.textContent=messages.length+' message'+(messages.length===1?'':'s');
-    if(!messages.length){messagesList.append(makeText('p','thread-placeholder','No messages in this conversation yet.'));return}
-    for(const msg of messages){
-      const sent=msg.sender_type==='admin';
-      const rowEl=makeText('article','message-row'+(sent?' sent':''),'');
-      rowEl.append(makeText('div','message-sender',sent?'Head Office Admin #'+msg.sender_id:(msg.sender_type||'Participant')+' #'+msg.sender_id));
-      rowEl.append(makeText('div','message-bubble',msg.deleted_at?'[Message deleted]':msg.message_text||''));
-      rowEl.append(makeText('div','message-time',formatTime(msg.created_at)));
-      messagesList.append(rowEl);
-    }
-    messagesList.scrollTop=messagesList.scrollHeight;
-  }catch(error){if(requestId!==messageRequestId)return;messagesStatus.classList.add('error');messagesStatus.textContent=error.message}
+    renderMessages(messages);
+  }else{
+    messagesStatus.classList.add('error');
+    messagesStatus.textContent=messageResult.reason?.message||'Messages could not be loaded.';
+  }
+  if(participantResult.status==='fulfilled'){
+    const participants=apiList(participantResult.value,['participants','participant_list','conversation_participants','results','items']);
+    canReply=participants.some(p=>p.participant_type==='admin'&&p.is_active!==false);
+    access.hidden=false;
+    access.textContent=canReply?'Head Office conversation':'Oversight only';
+  }else{
+    canReply=false;
+    access.hidden=false;
+    access.textContent='Access check unavailable';
+  }
+  updateComposer();
 }
-document.getElementById('refreshInbox').addEventListener('click',()=>{loadConversations();if(currentConversationId){const row=conversationRows.find(r=>Number(r.id)===Number(currentConversationId));if(row)selectConversation(row)}});
-tabAll.addEventListener('click',()=>setTab('all'));
-tabInbox.addEventListener('click',()=>setTab('inbox'));
+replyText.addEventListener('input',updateComposer);
+replyForm.addEventListener('submit',async event=>{
+  event.preventDefault();
+  if(!canReply||sending||!currentConversationId)return;
+  const message=replyText.value.trim();
+  if(!message)return;
+  const id=currentConversationId;
+  sending=true;updateComposer();
+  try{
+    await commRequest('comm_message_send',{conversation_id:id,message_text:message,reply_to_message_id:0},'POST');
+    replyText.value='';
+    const row=conversationRows.find(r=>String(r.id)===String(id));
+    if(row)await selectConversation(row);
+    await loadConversations();
+  }catch(error){messagesStatus.classList.add('error');messagesStatus.textContent=error.message}
+  finally{sending=false;updateComposer()}
+});
+document.getElementById('refreshInbox').addEventListener('click',async()=>{
+  await loadConversations();
+  const row=conversationRows.find(r=>String(r.id)===String(currentConversationId));
+  if(row)selectConversation(row);
+});
+conversationSearch.addEventListener('input',()=>{listLimit=30;renderConversations()});
+loadMoreButton.addEventListener('click',()=>{listLimit+=30;renderConversations()});
+navButtons.forEach(button=>button.addEventListener('click',()=>setView(button.dataset.view)));
+document.getElementById('openParentArchive').addEventListener('click',()=>{parentOverlay.hidden=false;document.getElementById('closeParentArchive').focus()});
+document.getElementById('closeParentArchive').addEventListener('click',()=>{parentOverlay.hidden=true;document.getElementById('openParentArchive').focus()});
+document.getElementById('viewAllFromParents').addEventListener('click',()=>{parentOverlay.hidden=true;setView('all')});
+parentOverlay.addEventListener('click',event=>{if(event.target===parentOverlay)parentOverlay.hidden=true});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!parentOverlay.hidden)parentOverlay.hidden=true});
 if(localStorage.getItem(TOKEN_KEY))showApp();
-
 </script>
 </body>
 </html>
