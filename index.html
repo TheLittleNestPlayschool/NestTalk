@@ -173,6 +173,7 @@
 </div>
 <script>
 const LOGIN_ENDPOINT='https://x58r-xped-p4y6.n7e.xano.io/api:0Ddhs4dT/ad_journey_login';
+const ME_ENDPOINT='https://x58r-xped-p4y6.n7e.xano.io/api:0Ddhs4dT/ad_journey_me';
 const TOKEN_KEY='nesttalk_token';
 const USER_KEY='nesttalk_user';
 const API_BASE='https://x58r-xped-p4y6.n7e.xano.io/api:o_oYSIFY';
@@ -183,12 +184,38 @@ const loginButton=document.getElementById('loginButton');
 const loginError=document.getElementById('loginError');
 const passwordInput=document.getElementById('password');
 const togglePassword=document.getElementById('togglePassword');
+let adminIdentityRequest=0;
+async function loadCurrentAdmin(){
+  const request=++adminIdentityRequest;
+  const token=localStorage.getItem(TOKEN_KEY);
+  const label=document.getElementById('userName');
+  label.textContent='Loading admin…';
+  if(!token)return;
+  try{
+    const response=await fetch(ME_ENDPOINT,{headers:{Authorization:'Bearer '+token,Accept:'application/json'},cache:'no-store'});
+    if(request!==adminIdentityRequest||token!==localStorage.getItem(TOKEN_KEY))return;
+    if(!response.ok)throw new Error(response.status===401?'SESSION_EXPIRED':'PROFILE_UNAVAILABLE');
+    const data=await response.json();
+    const user=data.ad_user||data.user||data;
+    localStorage.setItem(USER_KEY,JSON.stringify(user));
+    label.textContent=user.name||user.full_name||user.email||(user.id?'Admin #'+user.id:'Admin');
+  }catch(error){
+    if(request!==adminIdentityRequest)return;
+    if(error.message==='SESSION_EXPIRED'){
+      localStorage.removeItem(TOKEN_KEY);
+      localStorage.removeItem(USER_KEY);
+      showLogin();
+      loginError.textContent='Your session expired. Please sign in again.';
+    }else{
+      let user={};try{user=JSON.parse(localStorage.getItem(USER_KEY)||'{}')}catch(_){}
+      label.textContent=user.name||user.full_name||user.email||(user.id?'Admin #'+user.id:'Admin name unavailable');
+    }
+  }
+}
 function showApp(){
   loginScreen.classList.add('hidden');
   appScreen.classList.remove('hidden');
-  let user={};
-  try{user=JSON.parse(localStorage.getItem(USER_KEY)||'{}')}catch(_){}
-  document.getElementById('userName').textContent=user.name||user.full_name||user.email||'Head Office';
+  loadCurrentAdmin();
   loadConversations();
 }
 function showLogin(){
@@ -220,6 +247,7 @@ loginForm.addEventListener('submit',async event=>{
   finally{loginButton.disabled=false;loginButton.textContent='Sign In'}
 });
 document.getElementById('logoutButton').addEventListener('click',()=>{
+  ++adminIdentityRequest;
   localStorage.removeItem(TOKEN_KEY);
   localStorage.removeItem(USER_KEY);
   showLogin();
