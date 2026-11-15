@@ -402,9 +402,8 @@ function renderMessages(messages){
       if(Number(user.id)>0&&Number(user.id)===Number(msg.sender_id))senderName=String(user.name||user.full_name||user.email||'').trim();
     }
     const title=senderName?(sent?'Head Office · '+senderName:senderName):(sent?'Head Office · Admin #'+msg.sender_id:String(msg.sender_type||'Participant').replace(/^./,x=>x.toUpperCase())+' #'+msg.sender_id);
-    messageRow.append(makeText('div','message-sender',title));
     messageRow.append(makeText('div','message-bubble',Number(msg.deleted_at)>0?'[Message deleted]':msg.message_text||''));
-    messageRow.append(makeText('div','message-time',formatTime(msg.created_at)));
+    messageRow.append(makeText('div','message-time',title+' · '+formatTime(msg.created_at)));
     messagesList.append(messageRow);
   }
   messagesList.scrollTop=messagesList.scrollHeight;
