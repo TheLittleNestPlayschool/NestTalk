@@ -395,7 +395,8 @@ function renderMessages(messages){
   for(const msg of messages){
     const sent=msg.sender_type==='admin';
     const messageRow=makeText('article','message-row'+(sent?' sent':''),'');
-    const title=sent?'Head Office · Admin #'+msg.sender_id:(String(msg.sender_type||'Participant').replace(/^./,x=>x.toUpperCase())+' #'+msg.sender_id);
+    const senderName=String(msg.sender_name||'').trim();
+    const title=senderName?(sent?'Head Office · '+senderName:senderName):(sent?'Head Office · Admin #'+msg.sender_id:String(msg.sender_type||'Participant').replace(/^./,x=>x.toUpperCase())+' #'+msg.sender_id);
     messageRow.append(makeText('div','message-sender',title));
     messageRow.append(makeText('div','message-bubble',Number(msg.deleted_at)>0?'[Message deleted]':msg.message_text||''));
     messageRow.append(makeText('div','message-time',formatTime(msg.created_at)));
